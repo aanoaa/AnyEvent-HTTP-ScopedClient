@@ -5,7 +5,9 @@ Yet another [AnyEvent::HTTP](http://search.cpan.org/~mlehmann/AnyEvent-HTTP-2.14
 stolen from [Scoped HTTP Client for Node.js](https://github.com/technoweenie/node-scoped-http-client)
 
 ```perl
-    my $client = ScopedClient->new('http://example.com');
+    use AnyEvent;
+    use AnyEvent::HTTP::ScopedClient;
+    my $client = AnyEvent::HTTP::ScopedClient->new('http://example.com');
     $client->request('GET', sub {
         my ($body, $hdr) = @_;    # $body is undef if error occured
         return if ( !$body || !$hdr->{Status} =~ /^2/ );
@@ -59,4 +61,6 @@ stolen from [Scoped HTTP Client for Node.js](https://github.com/technoweenie/nod
             return if ( !$body || !$hdr->{Status} =~ /^2/ );
             # do something;
     });
+
+    AnyEvent->condvar->recv;
 ```

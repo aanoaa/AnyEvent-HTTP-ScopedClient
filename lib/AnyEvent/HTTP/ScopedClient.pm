@@ -149,7 +149,7 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 SYNOPSIS
 
-    my $client = ScopedClient->new('http://example.com');
+    my $client = AnyEvent::HTTP::ScopedClient->new('http://example.com');
     $client->request('GET', sub {
         my ($body, $hdr) = @_;    # $body is undef if error occured
         return if ( !$body || !$hdr->{Status} =~ /^2/ );
