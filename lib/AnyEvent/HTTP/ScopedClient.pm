@@ -1,4 +1,5 @@
 package AnyEvent::HTTP::ScopedClient;
+
 # ABSTRACT: L<AnyEvent> based L<https://github.com/technoweenie/node-scoped-http-client>
 
 use Moose;
@@ -120,7 +121,8 @@ sub header {
         while ( my ( $k, $v ) = each %$name ) {
             $self->options->{headers}{$k} = $v;
         }
-    } else {
+    }
+    else {
         $self->options->{headers}{$name} = $value;
     }
 
