@@ -9,7 +9,8 @@ my $cv = AE::cv;
 my $http = AnyEvent::HTTP::ScopedClient->new('http://www.naver.com/');
 
 $cv->begin;
-$http->get(
+$http->header({ 'Accept' => '*/*' })
+    ->get(
     sub {
         my ( $body, $hdr ) = @_;
         diag("$hdr->{Status}: $hdr->{Reason}") if $hdr->{Status} !~ /^2/;
