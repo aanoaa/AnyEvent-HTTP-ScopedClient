@@ -48,6 +48,16 @@ sub request {
               'Basic ' . encode_base64( $options{auth} );
         }
 
+        if ($ENV{DEBUG}) {
+            print "$method " . $self->options->{url} . "\n";
+            while (my ($k, $v) = each %headers) {
+                print "$k: $v\n";
+            }
+
+            print "\n";
+            print "$reqBody\n" if $sendingData;
+        }
+
         http_request(
             $method,
             $options{url},
