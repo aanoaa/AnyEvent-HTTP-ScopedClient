@@ -35,19 +35,19 @@ sub request {
 
             # push @pair, "$_=$reqBody->{$_}" for ( keys %$reqBody );
             push @pair, "$_=" . uri_escape_utf8( $reqBody->{$_} )
-              for ( keys %$reqBody );
+                for ( keys %$reqBody );
             $reqBody = join( '&', @pair );
         }
 
-        my $sendingData =
-          ( $method =~ m/^P/ && $reqBody && length $reqBody > 0 ) ? 1 : 0;
+        my $sendingData
+            = ( $method =~ m/^P/ && $reqBody && length $reqBody > 0 ) ? 1 : 0;
         $headers{'Content-Length'} = length $reqBody if $sendingData;
         $headers{'Content-Type'} = 'application/x-www-form-urlencoded'
-          if ( $sendingData && !$headers{'Content-Type'} );
+            if ( $sendingData && !$headers{'Content-Type'} );
 
         if ( $options{auth} ) {
-            $headers{Authorization} =
-              'Basic ' . encode_base64( $options{auth} );
+            $headers{Authorization}
+                = 'Basic ' . encode_base64( $options{auth} );
         }
 
         if ( $ENV{DEBUG} ) {
