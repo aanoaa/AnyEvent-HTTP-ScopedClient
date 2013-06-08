@@ -32,8 +32,10 @@ sub request {
 
         if ( 'HASH' eq ref($reqBody) ) {
             my @pair;
+
             # push @pair, "$_=$reqBody->{$_}" for ( keys %$reqBody );
-            push @pair, "$_=" . uri_escape_utf8($reqBody->{$_}) for ( keys %$reqBody );
+            push @pair, "$_=" . uri_escape_utf8( $reqBody->{$_} )
+              for ( keys %$reqBody );
             $reqBody = join( '&', @pair );
         }
 
@@ -48,9 +50,9 @@ sub request {
               'Basic ' . encode_base64( $options{auth} );
         }
 
-        if ($ENV{DEBUG}) {
+        if ( $ENV{DEBUG} ) {
             print "$method " . $self->options->{url} . "\n";
-            while (my ($k, $v) = each %headers) {
+            while ( my ( $k, $v ) = each %headers ) {
                 print "$k: $v\n";
             }
 
