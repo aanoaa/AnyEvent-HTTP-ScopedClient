@@ -5,7 +5,6 @@ package AnyEvent::HTTP::ScopedClient;
 use Moose;
 use namespace::autoclean;
 
-use utf8;
 use URI;
 use Try::Tiny;
 use MIME::Base64;
