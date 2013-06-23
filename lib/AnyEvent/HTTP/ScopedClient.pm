@@ -47,7 +47,7 @@ sub request {
 
         if ( $options{auth} ) {
             $headers{Authorization}
-                = 'Basic ' . encode_base64( $options{auth} );
+                = 'Basic ' . encode_base64( $options{auth}, '' );
         }
 
         if ( $ENV{DEBUG} ) {
